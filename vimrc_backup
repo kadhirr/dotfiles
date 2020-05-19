@@ -1,0 +1,30 @@
+colorscheme badwolf		"Colorscheme
+
+
+
+syntax enable		"syntax processing
+
+
+
+set tabstop =4		"number of visual spaces per TAB
+set softtabstop =4	"Number of spaces in tab while editing
+set expandtab		"tabs are changed to spaces
+
+
+
+set number		"show line numbers
+set showcmd		"show last command in bottom bar
+set cursorline		"Highlight current line
+filetype indent on	"load filetype-specific indent files
+set wildmenu		"visual autocomplete for command menu
+set showmatch		"highlight matching paranthesis like char
+
+
+
+set laststatus=2	"statusline enable
+set statusline=
+set statusline+=\ %f	"Display loc of file in buffer
+
+
+
+inoremap jj <ESC>
