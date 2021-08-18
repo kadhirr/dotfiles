@@ -190,7 +190,11 @@ endfunction
 
 "Function to set autocomplete suggestions to off in current buffer
 function! ToggleCompletionSuggestion()
-    let b:coc_suggest_disable=1
+    if exists('b:coc_suggest_disable')
+        let b:coc_suggest_disable=0
+    else
+        let b:coc_suggest_disable=1
+    endif
     endfunction
 "Keybind to map the function ToggleCompletionSuggestion
 map <leader>dac :call ToggleCompletionSuggestion()<CR>
