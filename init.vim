@@ -119,13 +119,15 @@ call plug#begin('~/AppData/Local/nvim/plugged')
  Plug 'vim-airline/vim-airline-themes'
  Plug 'scrooloose/nerdtree'
  Plug 'preservim/nerdcommenter'
-" Plug 'valloric/youcompleteme'
-" Plug 'nvim-telescope/telescope.nvim'
- Plug 'kien/ctrlp.vim'
  Plug 'mbbill/undotree'
  Plug 'morhetz/gruvbox'
 
+ Plug 'nvim-lua/plenary.nvim'
+ Plug 'nvim-telescope/telescope.nvim'
  Plug 'ryanoasis/vim-devicons'
+ Plug 'yggdroot/indentline'
+ Plug 'ap/vim-css-color'
+ Plug 'junegunn/rainbow_parentheses.vim'
 
  "IDE Like Setup - Takuya Matsuyama Guide
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
@@ -190,11 +192,14 @@ endfunction
 
 "Function to set autocomplete suggestions to off in current buffer
 function! ToggleCompletionSuggestion()
-    if exists('b:coc_suggest_disable')
-        let b:coc_suggest_disable=0
-    else
-        let b:coc_suggest_disable=1
-    endif
+    let b:coc_suggest_disable=1
     endfunction
 "Keybind to map the function ToggleCompletionSuggestion
 map <leader>dac :call ToggleCompletionSuggestion()<CR>
+
+" Telescope Configs
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
