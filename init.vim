@@ -142,7 +142,6 @@ Plug 'romgrk/barbar.nvim'
  Plug 'p00f/nvim-ts-rainbow'
 Plug 'preservim/nerdtree'
 
-Plug 'sunjon/shade.nvim' " Dim unfocused splits
  "IDE Like Setup - Takuya Matsuyama Guide
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
  "Coc
@@ -227,6 +226,9 @@ nnoremap <C-f> :NERDTreeFind<CR>
 " -------- barbar.nvim config -----------
 let bufferline = get(g:, 'bufferline', {})
 let bufferline.icon_custom_colors = v:false
+let bufferline.animation = v:true
+let bufferline.tabpages = v:true
+" <C-s> to get into Jump-to-Buffer mode
 
 " barbar.nvim keybinds (taken from example)
 
@@ -270,7 +272,7 @@ nnoremap <silent> <Space>bw :BufferOrderByWindowNumber<CR>
 " :BarbarDisable - very bad command, should never be used
 
 " neovide configs
-let g:neovide_refresh_rate=120
+let g:neovide_refresh_rate=60
 let g:neovide_fullscreen=v:true
 let neovide_remember_window_size = v:true
 if exists('g:neovide')
@@ -284,21 +286,7 @@ options = {
     theme = 'onedark'
     }}
 EOF
-""""  shade configs """
-:lua << EOF
 
-require'shade'.setup({
-  overlay_opacity = 50,
-  opacity_step = 1,
-  keys = {
-    brightness_up    = '<C-Up>',
-    brightness_down  = '<C-Down>',
-    toggle           = '<Leader>ts',
-  }
-})
-EOF
-" If you're getting errors when using Coc, try disabling Shade with the toggle
-" key
 " nvim-ts-rainbow config
 :lua << EOF
 require'nvim-treesitter.configs'.setup {
@@ -316,3 +304,5 @@ EOF
 if has('nvim')
     command! Nvimrc :e ~\AppData\Local\nvim\init.vim
 endif
+" Disabling Auto comment of next line for all files and buffers
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
