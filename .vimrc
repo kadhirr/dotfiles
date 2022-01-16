@@ -1,6 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-set bg=dark
+"set bg=dark
 colorscheme gruvbox
 "Open split right and below
 set splitbelow
@@ -13,17 +13,9 @@ nmap <Down>  <Nop>
 nmap <Left>  <Nop>
 nmap <Right> <Nop>
 
-"NERDTree Keybinds
-"nnoremap <leader>n :NERDTreeFocus<CR>
-"nnoremap <C-n> :NERDTree<CR>
-"nnoremap <C-t> :NERDTreeToggle<CR>
-"nnoremap <C-f> :NERDTreeFind<CR>
-
 
 filetype plugin indent on    " required
 
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 " TODO: Pick a leader key
 " let mapleader = ","
