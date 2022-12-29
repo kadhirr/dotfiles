@@ -1,7 +1,5 @@
 # vimrc
-My personal vimrc files for configuration.
-
-Rename vimrc_backup to .vimrc and place in $HOME.
+The new vimrc config is lua based for neovim. Place the init.lua file in the root of the repo to appropriate config locations.
 
 # Powershell Themes
 https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup

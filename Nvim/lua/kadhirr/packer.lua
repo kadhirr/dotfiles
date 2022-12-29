@@ -9,6 +9,7 @@ return require('packer').startup(function(use)
   use 'folke/tokyonight.nvim'
   use 'nvim-tree/nvim-web-devicons'
   use "nvim-lua/plenary.nvim"
+  use 'nvim-treesitter/nvim-treesitter'
   use {
       "williamboman/nvim-lsp-installer",
       "neovim/nvim-lspconfig",
@@ -46,4 +47,5 @@ use {
 -- or                            , branch = '0.1.x',
   requires = { {'nvim-lua/plenary.nvim'} }
 }
+use {'romgrk/barbar.nvim', wants = 'nvim-web-devicons'}
 end)
