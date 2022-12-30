@@ -43,6 +43,8 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
+  use 'p00f/nvim-ts-rainbow'
+
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
@@ -59,8 +61,19 @@ require('packer').startup(function(use)
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+  
+  -- Leap Plugin with default mappings 
+  use {
+      "ggandor/leap.nvim",
+      config = function() require("leap").set_default_keymaps() end
+  }
 
-  -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
+  use {
+	"windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
+
+    -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
     plugins(use)
@@ -222,7 +235,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'html', 'css' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -279,7 +292,18 @@ require('nvim-treesitter.configs').setup {
       },
     },
   },
+  rainbow = {
+    enable = true,
+    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    -- colors = {}, -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
+   },
 }
+
+-- Config for rainbow to work
+vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "" })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
@@ -433,7 +457,7 @@ cmp.setup {
 local keymap = vim.api.nvim_set_keymap
 local opts = {noremap = true}
 local default_opts = { noremap = true, silent = true }
-keymap('i','jk','<ESC',opts)
+keymap('i','jk','<ESC>',opts)
 keymap('n','<c-j>','<c-w>j',opts)
 keymap('n','<c-k>','<c-w>k',opts)
 keymap('n','<c-l>','<c-w>l',opts)
